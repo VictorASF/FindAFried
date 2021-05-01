@@ -35,29 +35,19 @@ export default function Login() {
 
   function handleSignIn() {
 
-    // try {
-    //   signIn(email, password)
-    // } catch (err) {
-    //   console.warn(err);
-    // }
+    // alert('clicou');
+    console.warn('clicou');
 
   }
 
 
   function handleSignUp() {
-    // console.warn(email, password);
-    setCarregando(true);
 
+    setCarregando(true);
     setTimeout(() => {
       setCarregando(false);
     }, 4000);
-    // try {
-    //   signUp(email, password)
-    // } catch (err) {
-    //   console.warn(err);
-    // } finally {
-    //   setCarregando(false);
-    // }
+
   }
 
   return (
