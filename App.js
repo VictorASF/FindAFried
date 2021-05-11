@@ -2,10 +2,17 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { Text, View } from 'react-native';
 
-import Routes from './routes'
+import { UsuarioProvider } from './contexts/usuario';
+
+import Routes from './routes';
+
+import './services/firebase';
 
 export default function App() {
   return (
-    <Routes />
+    <UsuarioProvider>
+      <Routes />
+    </UsuarioProvider>
+
   );
 }

@@ -1,18 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { } from 'react-native';
 
 import {
   Container,
-  Texto
+  Texto,
+  ContainerButtons,
+  Button,
+  ButtonText
 } from './styles';
 
+import { UsuarioContext } from '../../contexts/usuario';
 
 
 export default function Settings() {
 
+  const { signOut } = useContext(UsuarioContext)
+
   return (
     <Container>
-      <Texto>Settings</Texto>
+      <ContainerButtons>
+        <Button onPress={() => { signOut() }}>
+          <ButtonText>Sair</ButtonText>
+        </Button>
+      </ContainerButtons>
     </Container>
   );
 }

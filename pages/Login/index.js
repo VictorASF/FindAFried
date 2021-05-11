@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Text, View, Image, ActivityIndicator } from 'react-native';
 
 import {
@@ -26,7 +26,11 @@ import {
 import logoImg from '../../assets/logo.png';
 import img from '../../assets/login_backgroud.png';
 
+import { UsuarioContext } from '../../contexts/usuario';
+
 export default function Login() {
+
+  const { signIn, signUp } = useContext(UsuarioContext)
 
   const [botaoAtual, setBotaoAtual] = useState('aluno')
   const [carregando, setCarregando] = useState(false);
@@ -36,7 +40,13 @@ export default function Login() {
   function handleSignIn() {
 
     // alert('clicou');
-    console.warn('clicou');
+    // console.warn('clicou');
+
+    try {
+      signIn(email, password)
+    } catch (err) {
+      console.warn(err)
+    }
 
   }
 
@@ -44,9 +54,18 @@ export default function Login() {
   function handleSignUp() {
 
     setCarregando(true);
-    setTimeout(() => {
+    try {
+      signUp(email, password)
+    } catch (err) {
+      console.warn(err)
+    } finally {
       setCarregando(false);
-    }, 4000);
+    }
+
+
+    // setTimeout(() => {
+    //   setCarregando(false);
+    // }, 4000);
 
   }
 
