@@ -14,7 +14,6 @@ import {
   Logo,
   CaixaTextoChamada,
   TextoChamada,
-  TextoGrupou,
   ForgotPassword,
   ContainerButtons,
   Button,
@@ -23,8 +22,8 @@ import {
 
 } from './styles';
 
-import logoImg from '../../assets/logo.png';
-import img from '../../assets/login_backgroud.png';
+import img from '../../assets/images.jpg';
+import logo from '../../assets/pata.png';
 
 import { UsuarioContext } from '../../contexts/usuario';
 
@@ -32,22 +31,17 @@ export default function Login() {
 
   const { signIn, signUp } = useContext(UsuarioContext)
 
-  const [botaoAtual, setBotaoAtual] = useState('aluno')
+  const [botaoAtual, setBotaoAtual] = useState('login')
   const [carregando, setCarregando] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   function handleSignIn() {
-
-    // alert('clicou');
-    // console.warn('clicou');
-
     try {
       signIn(email, password)
     } catch (err) {
       console.warn(err)
     }
-
   }
 
 
@@ -61,12 +55,6 @@ export default function Login() {
     } finally {
       setCarregando(false);
     }
-
-
-    // setTimeout(() => {
-    //   setCarregando(false);
-    // }, 4000);
-
   }
 
   return (
@@ -75,18 +63,15 @@ export default function Login() {
       <Container>
 
         <Logo>
-          <Image source={logoImg} style={{ width: 300, height: 100 }} />
+          <Image source={logo} style={{ width: 175, height: 175 }} />
         </Logo>
 
         <CaixaTextoChamada>
           <TextoChamada>
-            Problemas para formar
+            Find a Friend
         </TextoChamada>
           <TextoChamada>
-            um grupo de trabalho
-        </TextoChamada>
-          <TextoChamada>
-            O <TextoGrupou>Grupou! </TextoGrupou>resolve!
+            um app para doguinhos
         </TextoChamada>
         </CaixaTextoChamada>
 
@@ -94,30 +79,13 @@ export default function Login() {
           <ContainerBotoes>
 
             <Botao ultimoClick={
-              botaoAtual == 'aluno' ? true : false
-            }
-              onPress={() => {
-                setBotaoAtual('aluno')
-              }}>
+              botaoAtual == 'login'
+            }>
               <BotaoTexto
                 ultimoClick={
-                  botaoAtual == 'aluno' ? true : false
+                  botaoAtual == 'login'
                 }
-              >Aluno</BotaoTexto>
-            </Botao>
-
-            <Botao
-              ultimoClick={
-                botaoAtual == 'professor' ? true : false
-              }
-              onPress={() => {
-                setBotaoAtual('professor')
-              }}>
-              <BotaoTexto
-                ultimoClick={
-                  botaoAtual == 'professor' ? true : false
-                }
-              >Professor</BotaoTexto>
+              >Login</BotaoTexto>
             </Botao>
 
           </ContainerBotoes>

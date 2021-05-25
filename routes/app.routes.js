@@ -2,30 +2,14 @@ import React, { } from 'react';
 
 import Dashboard from '../pages/Dashboard'
 import Settings from '../pages/Settings'
-import Chat from '../pages/Chat'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import { Feather } from '@expo/vector-icons';
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 
-const DashboardStack = createStackNavigator();
-
-const Drawer = createDrawerNavigator();
-
-const DashboardStackScreen = () => (
-  <DashboardStack.Navigator>
-    <DashboardStack.Screen
-      name="Dashboard" component={Dashboard} />
-    <DashboardStack.Screen
-      name="Chat" component={Chat} />
-  </DashboardStack.Navigator>
-)
-
-const TabInDrawerScreen = () => (
+const AppRoutes = () => (
   <Tab.Navigator
     tabBarOptions={
       {
@@ -36,13 +20,13 @@ const TabInDrawerScreen = () => (
   >
 
     <Tab.Screen
-      name="Dashboard"
-      component={DashboardStackScreen}
+      name="Find a Friend"
+      component={Dashboard}
       options={
         {
           tabBarIcon: ({ color }) => (
-            <Feather
-              name="airplay"
+            <MaterialCommunityIcons
+              name="dog"
               size={32}
               color={color}
             />
@@ -68,14 +52,5 @@ const TabInDrawerScreen = () => (
     />
   </Tab.Navigator>
 )
-
-const AppRoutes = () => {
-  return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Home" component={TabInDrawerScreen} />
-      <Drawer.Screen name="Chat" component={Chat} />
-    </Drawer.Navigator>
-  )
-}
 
 export default AppRoutes;

@@ -71,6 +71,7 @@ export const Logo = styled.View`
  flex:1;
  justify-content:center;
  align-items:center;
+ resizeMode: center;
 `
 export const CaixaTextoChamada = styled.View`
  flex:1;
@@ -82,13 +83,8 @@ export const TextoChamada = styled.Text`
  color:#fff;
  font-size:20px;
  text-align:center;
-
+ background:black;
 `
-
-export const TextoGrupou = styled.Text`
- font-weight:bold;
-`
-
 
 export const ForgotPassword = styled.TouchableOpacity`
   

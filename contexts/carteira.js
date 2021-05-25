@@ -4,7 +4,7 @@ const CarteiraContext = createContext({});
 
 const CarteiraProvider = ({ children }) => {
 
-  const [valorCarteira, setValorCarteira] = useState(100)
+  const [valorCarteira, setValorCarteira] = useState(200)
 
   const handleDebitar = (valor) => {
     setValorCarteira(valorCarteira - valor)

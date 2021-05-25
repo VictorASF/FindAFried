@@ -29,5 +29,18 @@
   "devDependencies": {
     "@babel/core": "~7.9.0"
   },
-  "private": true
+  "private": true,
+  "name": "grupou-app-2021.1",
+  "description": "",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/podgorski/grupou-app-2021.1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/podgorski/grupou-app-2021.1/issues"
+  },
+  "homepage": "https://github.com/podgorski/grupou-app-2021.1#readme"
 }

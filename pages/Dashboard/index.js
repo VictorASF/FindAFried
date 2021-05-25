@@ -6,9 +6,10 @@ import {
   Texto
 } from './styles';
 
-import ComponenteUm from './ComponenteUm';
+import CardComponent from './Component/CardComponent'
 
 import { CarteiraContext } from '../../contexts/carteira'
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function Dashboard({ navigation }) {
 
@@ -32,10 +33,13 @@ export default function Dashboard({ navigation }) {
   }
 
   return (
-    <Container>
-      <Texto>Dashboard => {resultado}</Texto>
-      <ComponenteUm valor={valorCarteira} handleValor={handleValor} />
-      {/* <Button title="Chat" onPress={() => navigation.push('Chat')} /> */}
-    </Container>
+    <ScrollView>
+      <Container>
+        <CardComponent/>
+        <CardComponent/>
+        <CardComponent/>
+        <CardComponent/>
+      </Container>
+    </ScrollView>
   );
 }
