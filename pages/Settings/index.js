@@ -12,10 +12,10 @@ import {
 import { UsuarioContext } from '../../contexts/usuario';
 
 
-export default function Settings() {
+export default function Settings({route, navigation}) {
 
   const { signOut } = useContext(UsuarioContext)
-
+  //const { uid } = route.params;
   return (
     <Container>
       <ContainerButtons>

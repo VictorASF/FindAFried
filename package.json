@@ -30,17 +30,17 @@
     "@babel/core": "~7.9.0"
   },
   "private": true,
-  "name": "grupou-app-2021.1",
+  "name": "FindAFriend",
   "description": "",
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/podgorski/grupou-app-2021.1.git"
+    "url": "git+https://github.com/VictorASF/FindAFried.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/podgorski/grupou-app-2021.1/issues"
+    "url": "https://github.com/VictorASF/FindAFried/issues"
   },
-  "homepage": "https://github.com/podgorski/grupou-app-2021.1#readme"
+  "homepage": "https://github.com/VictorASF/FindAFried#readme"
 }

@@ -6,9 +6,14 @@ import { UsuarioProvider } from './contexts/usuario';
 
 import Routes from './routes';
 
+import {LogBox} from 'react-native'
+
 import './services/firebase';
 
 export default function App() {
+
+  
+
   return (
     <UsuarioProvider>
       <Routes />

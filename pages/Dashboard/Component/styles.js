@@ -1,15 +1,15 @@
 import styled from 'styled-components/native';
 
 
-export const ContainerBox = styled.TouchableOpacity`
+export const ContainerBox = styled.View`
   flex-direction:row;
   align-items:center;
   justify-content:flex-start;
-  border: 1px solid red;
   width: 100%;
   height:220px;
   margin-top:6%;
-  border-radius:50px;
+  border-radius:25px;
+  background:white;
 `;
 
 export const ContainerFoto = styled.View`
@@ -50,4 +50,16 @@ export const Nome = styled.Text`
 export const Idade = styled.Text`
     padding:5px;
     font-size:16px;
+`;
+
+export const SaibaMais = styled.TouchableOpacity`
+    margin-top:20%;
+    border-radius:25px;
+    padding:2px 12px 2px 12px;
+    background: purple;
+`;
+
+export const SaibaMaisTexto = styled.Text`
+    color: white;
+    font-weight:bold;
 `;

@@ -1,5 +1,5 @@
-import React from 'react';
-import { ScrollView } from 'react-native'
+import React, {useState} from 'react';
+import { ScrollView} from 'react-native'
 
 import {
   ContainerBox,
@@ -9,34 +9,55 @@ import {
   ContainerInter,
   TextBasic,
   Nome,
-  Idade
+  Idade,
+  SaibaMais,
+  SaibaMaisTexto
 } from './styles';
 
-export default function CardComponent() {
+export default function CardComponent({uid,name,age, navigation, animals}) {
 
-  return (
-      <ContainerBox>
-        <ContainerFoto>
-          <FotoDog>
+  const [animal,setAnimal] = useState({});
 
-          </FotoDog>
-        </ContainerFoto>
-        <ContainerInfos>
-          <ContainerInter>
-          <TextBasic>
-            Nome
-          </TextBasic>
-          <Nome>
-            Brutus
-          </Nome>
-          <TextBasic>
-            Idade
-          </TextBasic>
-          <Idade>
-            6 anos
-          </Idade>
-          </ContainerInter>
-        </ContainerInfos>
+  const handleUid = (uid) =>{
+      animals.map(animal=>{
+        if(animal.uid == uid){
+          setAnimal(animal)
+          console.warn(animal)
+        }
+      })
+  }
+  
+return (
+    <ContainerBox>
+      <ContainerFoto>
+        <FotoDog>
+
+        </FotoDog>
+      </ContainerFoto>
+      <ContainerInfos>
+        <ContainerInter>
+        <TextBasic>
+          Nome
+        </TextBasic>
+        <Nome>
+          {name}
+        </Nome>
+        <TextBasic>
+          Idade
+        </TextBasic>
+        <Idade>
+          {age}
+        </Idade>
+        <SaibaMais onPress={()=>{handleUid(uid),navigation.navigate('PerfilDog',{
+            animal:animal
+          })
+        }}>
+          <SaibaMaisTexto>
+            Saiba Mais
+          </SaibaMaisTexto>
+        </SaibaMais>
+        </ContainerInter>
+      </ContainerInfos>
       </ContainerBox>
   )
 }

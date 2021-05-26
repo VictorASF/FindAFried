@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect} from 'react';
 import { Button } from 'react-native';
+import firebase from 'firebase';
+import 'firebase/firestore';
 
 import {
   Container,
@@ -8,37 +10,40 @@ import {
 
 import CardComponent from './Component/CardComponent'
 
-import { CarteiraContext } from '../../contexts/carteira'
 import { ScrollView } from 'react-native-gesture-handler';
 
-export default function Dashboard({ navigation }) {
+export default function FindAFriend({ navigation }) {
 
-  const { valorCarteira } = useContext(CarteiraContext);
+  const[animais,setAnimais] = useState([])
 
-  // const [valorCarteira, setValorCarteira] = useState(100);
-  const [resultado, setResultado] = useState(null)
-
-  useEffect(() => {
-    if (valorCarteira > 0) {
-      setResultado(`você tem R$ ${valorCarteira}`)
-    } else {
-      setResultado(`saldo insuficiente`)
-    }
-  }, [valorCarteira])
-
-  const handleValor = (valor) => {
-    if (valorCarteira > 0) {
-      setValorCarteira(valorCarteira - valor)
-    }
+  const TestClick = (msg)=>{
+    console.warn(msg)
   }
+
+  const ListenUpdate = (snap) => {
+    const data = snap.docs.map((doc)=>{
+      return{
+        uid:doc.id,
+        ... doc.data()
+      }
+      
+    })
+    setAnimais(data)
+  }
+
+  useEffect(()=>{
+    firebase.firestore().collection('animais').orderBy('uid','asc').onSnapshot(ListenUpdate);
+  },[])
 
   return (
     <ScrollView>
       <Container>
-        <CardComponent/>
-        <CardComponent/>
-        <CardComponent/>
-        <CardComponent/>
+      {
+        animais.map((animal) => 
+          <CardComponent
+          key={animal.uid} uid={animal.uid} name={animal.name} age={animal.age} navigation={ navigation } animals={ animais }/>
+        )
+      }   
       </Container>
     </ScrollView>
   );
