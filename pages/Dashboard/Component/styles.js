@@ -9,7 +9,7 @@ export const ContainerBox = styled.View`
   height:220px;
   margin-top:6%;
   border-radius:25px;
-  background:white;
+  background:#E6E6FA;
 `;
 
 export const ContainerFoto = styled.View`

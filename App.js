@@ -12,7 +12,7 @@ import './services/firebase';
 
 export default function App() {
 
-  
+  LogBox.ignoreAllLogs();
 
   return (
     <UsuarioProvider>

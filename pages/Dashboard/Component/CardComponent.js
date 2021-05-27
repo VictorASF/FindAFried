@@ -14,18 +14,7 @@ import {
   SaibaMaisTexto
 } from './styles';
 
-export default function CardComponent({uid,name,age, navigation, animals}) {
-
-  const [animal,setAnimal] = useState({});
-
-  const handleUid = (uid) =>{
-      animals.map(animal=>{
-        if(animal.uid == uid){
-          setAnimal(animal)
-          console.warn(animal)
-        }
-      })
-  }
+export default function CardComponent({animal,uid,name,age, navigation}) {
   
 return (
     <ContainerBox>
@@ -48,8 +37,12 @@ return (
         <Idade>
           {age}
         </Idade>
-        <SaibaMais onPress={()=>{handleUid(uid),navigation.navigate('PerfilDog',{
-            animal:animal
+        <SaibaMais onPress={()=>{navigation.navigate('PerfilDog',{
+            uid:animal.uid,
+            name:animal.name,
+            age:animal.age,
+            descricao:animal.descricao,
+            phone:animal.phone,
           })
         }}>
           <SaibaMaisTexto>

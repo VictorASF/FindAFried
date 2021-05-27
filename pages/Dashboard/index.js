@@ -41,7 +41,7 @@ export default function FindAFriend({ navigation }) {
       {
         animais.map((animal) => 
           <CardComponent
-          key={animal.uid} uid={animal.uid} name={animal.name} age={animal.age} navigation={ navigation } animals={ animais }/>
+          key={animal.uid} animal={ animal } uid={animal.uid} name={animal.name} age={animal.age} navigation={ navigation }/>
         )
       }   
       </Container>
