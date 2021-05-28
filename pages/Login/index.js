@@ -14,13 +14,13 @@ import {
   Logo,
   CaixaTextoChamada,
   TextoChamada,
-  ForgotPassword,
   ContainerButtons,
   Button,
   ButtonText,
-  TextForgotPassword
 
 } from './styles';
+
+import { ScrollView } from 'react-native-gesture-handler';
 
 import img from '../../assets/images.jpg';
 import logo from '../../assets/pata.png';
@@ -58,7 +58,8 @@ export default function Login() {
   }
 
   return (
-    <>
+   <ScrollView>
+
       <BackgroundImage source={img}></BackgroundImage>
       <Container>
 
@@ -105,13 +106,6 @@ export default function Login() {
               value={password}
             />
           </ContainerInputs>
-
-          <ForgotPassword>
-            <TextForgotPassword>
-              esqueci minha senha
-            </TextForgotPassword>
-
-          </ForgotPassword>
           <ContainerButtons>
             <Button
               invert={true}
@@ -135,6 +129,6 @@ export default function Login() {
 
         </CaixaLogin>
       </Container>
-    </>
+    </ScrollView>           
   );
 }

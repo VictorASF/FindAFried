@@ -7,13 +7,13 @@ export const Container = styled.View`
   justify-content:flex-end;
   /* background-color:#AB1B71; */
   padding:10px 10px 0px 10px;
-
+  height:900px;
 `;
 
 export const CaixaLogin = styled.View`
   background-color:#fff;
   width:100%;
-  height:50%;
+  height:420px;
   border-top-right-radius:25px;
   border-top-left-radius:25px;
   padding:20px;
@@ -85,19 +85,6 @@ export const TextoChamada = styled.Text`
  text-align:center;
  background:black;
 `
-
-export const ForgotPassword = styled.TouchableOpacity`
-  
-  align-items:flex-end;
-
-`
-
-export const TextForgotPassword = styled.Text`
-  color:#ae1b73;
-  font-size:14px;
-
-`
-
 
 export const ContainerButtons = styled.View`
   flex-direction:row;

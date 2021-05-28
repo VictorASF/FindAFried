@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect } from 'react';
 
 import firebase from 'firebase';
 import 'firebase/auth';
+import 'firebase/firestore';
 
 const UsuarioContext = createContext({});
 
@@ -18,10 +19,20 @@ const UsuarioProvider = ({ children }) => {
 
   }, [])
 
+  const CreateUser = (user) =>{
+    firebase.firestore().collection("Users").add({
+      uid:user,
+      name: "",
+      telefone: '',
+      endereco: ''
+    })
+    console.warn('Sucesso')
+  }
+
   const signUp = (email, password) => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(resp => {
-        console.warn(resp)
+        CreateUser(resp.user.uid)
       })
       .catch(err => {
         console.warn(err)
