@@ -1,11 +1,10 @@
 import React, { useState, useEffect} from 'react';
-import { Button } from 'react-native';
 import firebase from 'firebase';
 import 'firebase/firestore';
+import 'firebase/storage';
 
 import {
   Container,
-  Texto
 } from './styles';
 
 import CardComponent from './Component/CardComponent'
@@ -16,14 +15,10 @@ export default function FindAFriend({ navigation }) {
 
   const[animais,setAnimais] = useState([])
 
-  const TestClick = (msg)=>{
-    console.warn(msg)
-  }
-
-  const ListenUpdate = (snap) => {
+  const listenUpdate = (snap) => {
     const data = snap.docs.map((doc)=>{
       return{
-        uid:doc.id,
+        id:doc.id,
         ... doc.data()
       }
       
@@ -32,7 +27,7 @@ export default function FindAFriend({ navigation }) {
   }
 
   useEffect(()=>{
-    firebase.firestore().collection('animais').orderBy('uid','asc').onSnapshot(ListenUpdate);
+    firebase.firestore().collection('animais').orderBy('uid','asc').onSnapshot(listenUpdate);
   },[])
 
   return (

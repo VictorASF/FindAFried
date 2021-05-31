@@ -23,7 +23,9 @@ export const ContainerImagem = styled.View`
   `;
 
 export const Imagem = styled.Image`
-
+  width:100%;
+  height:100%;
+  border-radius:25px;
 `;
 
 export const ContainerInfo = styled.View`

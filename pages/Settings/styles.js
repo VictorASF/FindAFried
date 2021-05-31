@@ -15,7 +15,7 @@ export const Texto = styled.Text`
 `
 export const ContainerButtons = styled.View`
   flex-direction:row;
-  margin-top:30px;
+  margin-top:5%;
   margin-bottom:5%;
 `
 
@@ -23,31 +23,30 @@ export const Button = styled.TouchableOpacity`
   flex:1;
   width:100%;
   height: 60px;
-  background-color: ${props => props.invert ? "#fff" : "#ae1b73"};
-  border:1px solid #ae1b73;
-  border-radius:5px;
+  background-color: #DC143C;
+  border-radius:25px;
   justify-content:center;
   align-items:center;
-  margin-right:${props => props.invert ? "10px" : "0px"};
 `
 
 export const ButtonText = styled.Text`
-  color:${props => props.invert ? "#ae1b73" : "#fff"};
-  font-size:16px;
+  color:purple;
+  font-size:18px;
   font-weight:bold;
 `
 
 export const ContainerFoto = styled.View`
   height:180px;
-  margin-top:6%;
-  margin-bottom: 6%;
+  margin-top:5%;
   width:180px;
-  border:1px solid red;
+  background: #E6E6FA;
   border-radius:100px;
 `;
 
 export const Foto = styled.Image`
-
+  width:180px;
+  height:180px;
+  border-radius:100px;
 `;
 
 export const ContainerInfo = styled.View`
@@ -75,4 +74,40 @@ border:1px solid #ccc;
   margin-top:5px;
   width:95%;
   margin-bottom:5%;
+`;
+
+export const ButtonSalvar = styled.TouchableOpacity`
+margin-top:5%;
+width:25%;
+height: 50px;
+background-color: #E6E6FA;
+border-radius:25px;
+justify-content:center;
+align-items:center;
+
+`;
+
+export const ContainerButton = styled.View`
+  height:60px;
+  width:100%;
+  justify-content:flex-end;
+  align-items:flex-end;
+`;
+
+export const ContainerButtonAlterar = styled.View`
+  height:60px;
+  width:100%;
+  justify-content:center;
+  align-items:center;
+  margin-bottom:5%;
+`;
+
+export const ButtonAlterar = styled.TouchableOpacity`
+margin-top:5%;
+width:39%;
+height: 50px;
+background-color: #E6E6FA;
+border-radius:25px;
+justify-content:center;
+align-items:center;
 `;

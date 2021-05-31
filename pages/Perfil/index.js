@@ -1,7 +1,5 @@
 import React from 'react';
-import { Linking,Button } from 'react-native';
-import firebase from 'firebase';
-import 'firebase/firestore';
+import { Linking } from 'react-native';
 
 import {
     Container,
@@ -20,13 +18,17 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 export default function PerfilDog({ route, navigation }) {
 
-  const { uid,name,age, descricao,phone } = route.params;
+  const { uid,name,age, descricao,phone, image } = route.params;
 
   return (
       <ScrollView>
         <Container>
             <ContainerImagem>
-                <Imagem/>
+                {image&& (
+                    <Imagem
+                        source={{uri:image}}
+                    />
+                )}
             </ContainerImagem>
             <ContainerBotao>
                 <Botao title='Quero Adotar' onPress={()=>{

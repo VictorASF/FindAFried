@@ -20,8 +20,10 @@ export const ContainerFoto = styled.View`
 `;
 
 export const FotoDog = styled.Image`
-    background: black;
-    padding:20px;
+    width:100%;
+    height:100%;
+    border-radius:25px;
+    resizeMode: stretch
 `;
 
 export const ContainerInfos = styled.View`

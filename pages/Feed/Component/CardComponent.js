@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-import { ScrollView} from 'react-native'
+import firebase from 'firebase';
+import 'firebase/firestore';
+import 'firebase/storage';
 
 import {
   ContainerBox,
@@ -13,15 +15,29 @@ import {
   SaibaMais,
   SaibaMaisTexto
 } from './styles';
+import { useEffect } from 'react';
 
 export default function CardComponent({animal,uid,name,age, navigation}) {
   
+  const [image, setImage] = useState(null)
+
+  useEffect(()=>{
+    firebase.storage()
+      .ref()
+      .child('upload/' + animal.id +'.jpg')
+      .getDownloadURL().then(function(URL){
+        setImage(URL)
+      })
+  })
+
 return (
     <ContainerBox>
       <ContainerFoto>
-        <FotoDog>
-
-        </FotoDog>
+      {image && (
+          <FotoDog
+            source={{uri:image}}
+          />
+        )}
       </ContainerFoto>
       <ContainerInfos>
         <ContainerInter>
@@ -43,6 +59,7 @@ return (
             age:animal.age,
             descricao:animal.descricao,
             phone:animal.phone,
+            image:image
           })
         }}>
           <SaibaMaisTexto>

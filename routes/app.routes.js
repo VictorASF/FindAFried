@@ -1,6 +1,6 @@
 import React, { } from 'react';
 
-import FindAFriend from '../pages/Dashboard'
+import FindAFriend from '../pages/Feed'
 import Settings from '../pages/Settings'
 import PerfilDog from '../pages/Perfil'
 
@@ -27,7 +27,7 @@ const AppRoutes = () => (
   <Tab.Navigator
     tabBarOptions={
       {
-        activeTintColor: 'tomato',
+        activeTintColor: 'purple',
         inactiveTintColor: '#ccc'
       }
     }

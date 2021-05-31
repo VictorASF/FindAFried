@@ -1,9 +1,9 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { Text } from 'react-native';
 
 import {
   Container,
-  Texto,
+  ContainerButton,
+  ButtonSalvar,
   ContainerButtons,
   Button,
   ButtonText,
@@ -12,19 +12,22 @@ import {
   ContainerInfo,
   InfoText,
   ContainerBox,
-  Box
+  Box,
+  ContainerButtonAlterar,
+  ButtonAlterar
 } from './styles';
 
 import { UsuarioContext } from '../../contexts/usuario';
 import firebase from 'firebase';
 import 'firebase/firestore';
+import 'firebase/storage';
 import { ScrollView } from 'react-native-gesture-handler';
-import { useFocusEffect } from '@react-navigation/native';
+import * as ImagePicker from 'expo-image-picker';
 
 
 export default function Settings({route, navigation}) {
 
-  const [ usuario, setUsuario ] = useState([{name:'',telefone:'',endereco:''}])
+  const [ image,setImage] = useState(null)
   const [ UsuarioName, setUsuarioName ] = useState('')
   const [ UsuarioTelefone, setUsuarioTelefone] = useState('')
   const [ UsuarioEndereco, setUsuarioEndereco] = useState('')
@@ -33,12 +36,11 @@ export default function Settings({route, navigation}) {
   const { signOut } = useContext(UsuarioContext)
   const { user } = useContext(UsuarioContext)
 
-  const ListenUpdate = (snap) => {
+  const listenUpdate = (snap) => {
     const data = snap.docs.map((doc)=>{
       setUsuarioId(doc.id)
-      console.warn(UsuarioId)
       return{
-        uid:doc.id,
+        id:doc.id,
         ... doc.data()
       }
       
@@ -47,32 +49,85 @@ export default function Settings({route, navigation}) {
     setUsuarioTelefone(data[0].telefone)
     setUsuarioEndereco(data[0].endereco)
     setUsuarioUid(data[0].uid)
+    setUsuarioId(data[0].id)
   }
 
-  // const UpdateDb = () =>{
-  // firebase.firestore().collection('Users').doc(`${UsuarioId}`)
-  // .update({name: UsuarioName,
-  // telefone: UsuarioTelefone,
-  // endereco: UsuarioEndereco})
-  // }
-  
-  useFocusEffect(React.useCallback(()=>{
-    firebase.firestore().collection('Users').where('uid','==', user.uid).onSnapshot(ListenUpdate);
-  },[]))
+  const updateDb = async () =>{
+    console.warn(UsuarioId)
+  await firebase.firestore()
+    .collection('Users')
+    .doc(`${UsuarioId}`)
+    .update({name: UsuarioName,
+            telefone: UsuarioTelefone,
+            endereco: UsuarioEndereco})
+  }
 
+  const uploadImage = async (uri) =>{
 
-  // firebase.firestore().collection('Users').where('uid', '==',user.uid)
-  // .get().then((doc)=>{
-  //     console.warn(doc.id);
-  //   })
+    const image_local = await fetch(uri)
+
+    const blob = await image_local.blob()
+    
+    const filename = UsuarioId
+
+    var ref = firebase.storage().ref().child('upload/' + filename)
+
+    ref.put(blob).then(function(imagem){
+      
+      imagem.ref.getDownloadURL().then(function(URL){
+        setImage(URL)
+      })
+    })
+  }
+
+  const changeImage = async () =>{
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing:true,
+      aspect:[4,4],
+      quality:1
+    })
+
+    if(!result.cancelled){
+      uploadImage(result.uri);
+    }
+  }
+
+  useEffect(()=>{
+    firebase.firestore()
+      .collection('Users')
+      .where('uid','==', user.uid)
+      .onSnapshot(listenUpdate);
+  },[])
+
+  useEffect(()=>{
+    if(UsuarioId != ''){
+      firebase.storage()
+      .ref()
+      .child('upload/' + UsuarioId)
+      .getDownloadURL().then(function(URL){
+        setImage(URL)
+      })
+    }
+  },[UsuarioId])
+
 
   return (
     <ScrollView>
     <Container>
+      <ContainerButton>
+        <ButtonSalvar onPress={()=>{updateDb()}}><ButtonText>Salvar</ButtonText></ButtonSalvar>
+      </ContainerButton>
       <ContainerFoto>
-        <Foto/>
+        {image && (
+          <Foto
+            source={{uri:image}}
+          />
+        )}
       </ContainerFoto>
-      
+      <ContainerButtonAlterar>
+        <ButtonAlterar onPress={()=>{changeImage()}}><ButtonText>Alterar Foto</ButtonText></ButtonAlterar>
+      </ContainerButtonAlterar>    
       <ContainerInfo>
         <InfoText>
           Nome:
@@ -84,7 +139,7 @@ export default function Settings({route, navigation}) {
           Telefone
         </InfoText>
         <ContainerBox>
-        <Box onChangeText={setUsuarioTelefone} value={UsuarioTelefone}/>
+        <Box onChangeText={setUsuarioTelefone} keyboardType='number-pad' value={UsuarioTelefone}/>
         </ContainerBox>
         <InfoText>
           Endereço
